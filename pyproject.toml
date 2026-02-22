@@ -1,0 +1,16 @@
+[project]
+name = "ms-agents-api"
+version = "0.1.0"
+description = "ms-agents is an api developed to offer a complete ecosystem for managing AI Agents (LLMs)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.131.0",
+    "loguru>=0.7.3",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.1",
+    "pymongo>=4.16.0",
+    "pytz>=2025.2",
+    "uvicorn>=0.41.0",
+]

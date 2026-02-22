@@ -27,11 +27,11 @@ def build_filters(**kwargs: Optional[Any]) -> dict[str, Any]:
         filters["created_at"] = created_at
 
     if _id:
-        # se vier lista
+        # if it's a list
         if isinstance(_id, list):
             filters["_id"] = {"$in": [ObjectId(oid) for oid in _id]}
         else:
-            # força conversão mesmo se já for ObjectId
+            # force conversion even if it's already an ObjectId
             filters["_id"] = ObjectId(str(_id))
 
     return filters

@@ -95,11 +95,11 @@ class MongoRepository(BaseRepository[EntityClass]):
     ) -> List[dict]:
         pipeline = []
 
-        # Filtro opcional
+        # Optional filter
         if filters:
             pipeline.append({"$match": filters})
 
-        # Agrupamento
+        # Grouping
         pipeline.append(
             {
                 "$group": {
@@ -109,14 +109,14 @@ class MongoRepository(BaseRepository[EntityClass]):
             }
         )
 
-        # Projeção
+        # Projection
         pipeline.append({"$project": {group_field: "$_id", "values": 1, "_id": 0}})
 
-        # Ordenação opcional
+        # Optional sorting
         if sort_by:
             pipeline.append({"$sort": {sort_by: 1}})
 
-        # Paginação
+        # Pagination
         if skip:
             pipeline.append({"$skip": skip})
         if limit:

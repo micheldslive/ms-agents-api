@@ -27,7 +27,7 @@ class DeleteAgentsUseCase:
             logger.exception("Error while counting agents")
             raise
 
-        if not result:  # garante que não é None
+        if not result:  # ensures it is not None
             raise SystemHttpException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 error_code="DELETE_FAILED",

@@ -1,43 +1,43 @@
 # ms-agents-api
 ms-agents is an api developed to offer a complete ecosystem for managing AI Agents (LLMs).
 
-## Pré-requisitos
+## Prerequisites
 - Python 3.13+
-- [uv](https://github.com/astral-sh/uv) (gerenciador de dependências)
-- MongoDB (configurar URL no arquivo `.env`)
+- [uv](https://github.com/astral-sh/uv) (dependency manager)
+- MongoDB (configure URL in the `.env` file)
 
-## Instalação
+## Installation
 
-1. Clone o repositório e acesse a pasta do projeto:
+1. Clone the repository and access the project folder:
    ```bash
-   git clone <url-do-repositorio>
+   git clone <repository-url>
    cd ms-agents-api
    ```
 
-2. Crie o arquivo `.env` com base no `.env.example` e configure as variáveis:
+2. Create the `.env` file based on `.env.example` and set up the variables:
    ```bash
    cp .env.example .env
-   # Edite o arquivo .env conforme necessário
+   # Edit the .env file as needed
    ```
 
-3. Instale as dependências:
+3. Install dependencies:
    ```bash
    make install
    ```
 
-## Executando o servidor
+## Running the server
 
-- Para iniciar o servidor em modo produção:
+- To start the server in production mode:
   ```bash
   make run
   ```
-  O servidor estará disponível em `http://localhost:8000`.
+  The server will be available at `http://localhost:8000`.
 
-- Para modo desenvolvimento (hot reload):
+- For development mode (hot reload):
   ```bash
   make run_dev
   ```
 
 ## Endpoints
 
-Acesse a documentação automática em `http://localhost:8000/ms-agents-api/docs` após iniciar o servidor.
+Access the automatic documentation at `http://localhost:8000/ms-agents-api/docs` after starting the server.

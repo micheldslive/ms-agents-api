@@ -8,8 +8,8 @@ from app.core.settings import settings
 from app.exceptions.http import SystemHttpException
 
 app = FastAPI(
-    title="Memory API",
-    description="API com as entidades para trabalhar com memoria dos agentes da plataforma IA",
+    title="MS Agents API",
+    description="API to offer a complete ecosystem for managing AI Agents (LLMs)",
     root_path=settings.OPENAPI_PREFIX,
     lifespan=lifespan,
 )

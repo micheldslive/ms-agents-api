@@ -2,7 +2,7 @@
 # Makefile — @astroai/backend
 # -------------------------------------------------
 
-.PHONY: help venv install install_dev lint format test run run_dev run_front run_seeds clean
+.PHONY: help venv install install_dev lint format test test_unit test_integration install_hooks run run_dev run_front run_seeds clean
 .DEFAULT_GOAL := help
 
 # -------------------------------------------------
@@ -21,7 +21,7 @@ PORT      ?= 8000
 
 ###################################################
 help: ## Show this help
-	@echo "Comandos disponíveis:"; \
+	@echo "Available commands:"; \
 	grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 	sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
@@ -37,9 +37,6 @@ $(VENV_DIR)/pyvenv.cfg:
 # Dependencies
 ###################################################
 install: venv ## Installs the project dependencies.
-	$(PIP) install -r pyproject.toml
-
-install_dev: install ## Installs the project dev dependencies.
 	$(PIP) install -r pyproject.toml --extra dev
 
 ###################################################
@@ -51,8 +48,17 @@ lint: venv ## Lint with Ruff
 format: venv ## Format with Black
 	$(PY) -m black .
 
-test: venv ## run tests
-	$(PY) -m pytest tests/ -p no:warnings
+test: venv ## Run all tests with coverage report
+	$(UV) run pytest tests/ --cov=app --cov-report=term-missing
+
+test_unit: venv ## Run only unit tests
+	$(UV) run pytest tests/unit/ -v
+
+test_integration: venv ## Run only integration tests
+	$(UV) run pytest tests/integration/ -v
+
+install_hooks: ## Install git hooks (pre-push test guard)
+	@bash scripts/install_hooks.sh
 
 ###################################################
 # Execution
